@@ -1,23 +1,32 @@
 import { FastifyPluginAsync } from 'fastify'
-import { Type } from '@sinclair/typebox'
+import { Type, Static } from '@sinclair/typebox'
 
-const example: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
-  fastify.get(
+const QuerySchema = Type.Object({
+  name: Type.Optional(Type.String({ minLength: 1 }))
+})
+
+const ResponseSchema = Type.Object({
+  message: Type.String()
+})
+
+type QueryType = Static<typeof QuerySchema>
+
+const example: FastifyPluginAsync = async (fastify): Promise<void> => {
+  fastify.get<{
+    Querystring: QueryType
+    Reply: Static<typeof ResponseSchema>
+  }>(
     '/',
     {
       schema: {
-        querystring: Type.Object({
-          name: Type.Optional(Type.String({ minLength: 1 }))
-        }),
+        querystring: QuerySchema,
         response: {
-          200: Type.Object({
-            message: Type.String()
-          })
+          200: ResponseSchema
         }
       }
     },
     async function (request, reply) {
-      const { name } = request.query as { name?: string }
+      const { name } = request.query
       const message = name
         ? `Hello, ${name}! 👋 Welcome to our Fastify app.`
         : `Hello there! You can pass your name like this: /?name=YourName`
