@@ -1,17 +1,15 @@
-// Read the .env file.
 import * as dotenv from 'dotenv'
-
-// Require the framework
+import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox'
 import Fastify from 'fastify'
-
-// Require library to exit fastify process, gracefully (if possible)
 import closeWithGrace from 'close-with-grace'
+
+
 dotenv.config()
 
 // Instantiate Fastify with some config
 const app = Fastify({
   logger: true,
-})
+}).withTypeProvider<TypeBoxTypeProvider>()
 
 // Register your application as a normal plugin.
 app.register(import('./app.ts'))

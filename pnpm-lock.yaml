@@ -14,6 +14,9 @@ importers:
       '@fastify/sensible':
         specifier: ^6.0.0
         version: 6.0.3
+      '@fastify/type-provider-typebox':
+        specifier: ^5.2.0
+        version: 5.2.0(@sinclair/typebox@0.34.38)
       '@sinclair/typebox':
         specifier: ^0.34.38
         version: 0.34.38
@@ -88,6 +91,11 @@ packages:
 
   '@fastify/sensible@6.0.3':
     resolution: {integrity: sha512-Iyn8698hp/e5+v8SNBBruTa7UfrMEP52R16dc9jMpqSyEcPsvWFQo+R6WwHCUnJiLIsuci2ZoEZ7ilrSSCPIVg==}
+
+  '@fastify/type-provider-typebox@5.2.0':
+    resolution: {integrity: sha512-RoUFTQNYlaVM/gXosFqlrUAD/JHC+OXLcj4DxNoMOag2GI7OydfCt+3vdT+6D2daJwhGAdkpxB0wLNqS7gf4CQ==}
+    peerDependencies:
+      '@sinclair/typebox': '>=0.26 <=0.34'
 
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
@@ -823,6 +831,10 @@ snapshots:
       http-errors: 2.0.0
       type-is: 1.6.18
       vary: 1.1.2
+
+  '@fastify/type-provider-typebox@5.2.0(@sinclair/typebox@0.34.38)':
+    dependencies:
+      '@sinclair/typebox': 0.34.38
 
   '@isaacs/cliui@8.0.2':
     dependencies:
